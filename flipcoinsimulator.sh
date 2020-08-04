@@ -1,8 +1,7 @@
 #!/bin/bash -x
 H=0
 T=0
-i=1
-while [ $i -le 10 ]
+while [[ $H -lt 21 && $T -lt 21 ]]
 do
 	randomCheck=$((RANDOM%2))
 	if [ $randomCheck -eq 1 ]
@@ -11,7 +10,15 @@ do
 	else
 		((T++))
 	fi
-((i++))
 done
-echo "Heads won : $H Times"
-echo "Tails won :$T Times"
+
+if [ $H -eq $T ]
+then
+echo " it is tie "
+elif [ $H -gt $T ]
+then
+  echo "Heads won by $(($H-$T)) times more than Tails"
+else
+  echo "Tails won by $(($T-$H)) times more than Heads"
+fi
+
